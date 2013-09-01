@@ -5,9 +5,12 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "bredele/data-binding": "*"
+    "bredele/data-binding": "*",
+    "bredele/store": "*"
   },
-  "development": {},
+  "development": {
+    "component/assert": "*"
+  },
   "license": "MIT",
   "main": "index.js",
   "scripts": [

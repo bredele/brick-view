@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Widget</title>
+</head>
+<body>
+  <h1 class="me">My name is {firstname} {lastname}</h1>
+  <script src="../build/build.js"></script>
+  <script>
+    var Widget = require('widget');
+    var tmpl = document.querySelector('.me');
+
+    //example 1
+    var widget1 = new Widget();
+    widget1.template('<button>olivier</button>');
+    widget1.place(document.body);
+
+    //example 2
+    var widget2 = new Widget();
+    widget2.template(tmpl, {
+      firstname : 'olivier',
+      lastname : 'wietrich'
+    });
+    widget2.alive();
+
+    //example 3
+    var widget3 = new Widget();
+    widget3.template('<h2>and my github is <a href="{link}">{github}</a></h2>', {
+      github : 'bredele',
+      link: 'http://gihub.com/bredele'
+    });
+    widget3.place(document.body);
+  </script>
+</body>
+</html>
