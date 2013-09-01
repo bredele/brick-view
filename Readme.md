@@ -1,4 +1,3 @@
-
 # widget
 
   Data binding wrapper
@@ -28,7 +27,7 @@
 ```js
 var Widget = require('widget');
 var widget = new Widget();
-widget.template('<span>name</span>', {
+widget.template('<span>{name}</span>', {
   name:'bredele'
 });
 widget.place(document.body);
