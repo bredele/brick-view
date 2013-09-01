@@ -1,0 +1,16 @@
+{
+  "name": "widget",
+  "repo": "bredele/widget",
+  "description": "Data binding wrapper",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "bredele/data-binding": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
