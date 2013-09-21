@@ -4,7 +4,7 @@
 
 ## Installation
 
-    $ component install bredele/widget
+    $ component install leafs/widget
 
 ## API
 
