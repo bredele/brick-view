@@ -5,8 +5,8 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "bredele/data-binding": "*",
-    "bredele/store": "*"
+    "leafs/data-binding": "*",
+    "leafs/store": "*"
   },
   "development": {
     "component/assert": "*"
