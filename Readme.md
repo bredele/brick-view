@@ -1,6 +1,6 @@
-# view
+# View
 
-  Data binding wrapper
+  > Data binding wrapper
 
 ## Installation
 
@@ -32,7 +32,12 @@ view.template('<span>{name}</span>', {
 });
 view.place(document.body);
 ```
-   
+
+## TODO
+
+  - [ ] test and code destroy (destory plugin and dom)
+  - [ ] add cross browser insert adjacent
+
 
 ## License
 
