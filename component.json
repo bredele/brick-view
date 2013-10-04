@@ -1,6 +1,6 @@
 {
-  "name": "widget",
-  "repo": "leafs/widget",
+  "name": "view",
+  "repo": "leafs/view",
   "description": "Data binding wrapper",
   "version": "0.0.1",
   "keywords": [],

@@ -13,19 +13,19 @@ function domify(tmpl){
 }
 
 /**
- * Expose 'Widget'
+ * Expose 'View'
  */
 
-module.exports = Widget;
+module.exports = View;
 
 
 /**
- * Widget constructor.
+ * View constructor.
  * We keep the constructor clean for override.
  * @api public
  */
 
-function Widget(){
+function View(){
   this.dom = null;
   this.store = null;
   this.binding = new Binding();
@@ -41,7 +41,7 @@ function Widget(){
  * @api public
  */
 
-Widget.prototype.template = function(tmpl, store, view) {
+View.prototype.template = function(tmpl, store, mixin) {
   //TODO: I would like ideally work on adapter and not store
   this.store = new Store(store);
   //TODO: refactor data-biding, we did that because we can't initialize binding with model
@@ -51,7 +51,15 @@ Widget.prototype.template = function(tmpl, store, view) {
 };
 
 
-Widget.prototype.plugin = function(name, plug) {
+/**
+ * Add binding plugin.
+ * @param  {String} name 
+ * @param  {Object | Function} plug 
+ * @return {View}
+ * @api public
+ */
+
+View.prototype.plugin = function(name, plug) {
   this.binding.add(name, plug);
   return this;
 };
@@ -60,13 +68,12 @@ Widget.prototype.plugin = function(name, plug) {
 /**
  * Place widget in document.
  * @param {HTMLElement} node
- * @param {String} location beforeend|afterend|beforebegin|afterbegin
  * @api public
  */
 
-Widget.prototype.place = function(node, location) {
+View.prototype.insert = function(node) {
   this.alive();
-  node.insertAdjacentElement(location || 'beforeend', this.dom);
+  node.appendChild(this.dom);
 };
 
 
@@ -76,6 +83,11 @@ Widget.prototype.place = function(node, location) {
  * @api publi
  */
 
-Widget.prototype.alive = function(node) {
+View.prototype.alive = function(node) {
   this.binding.apply(node || this.dom);
+};
+
+
+View.prototype.destroy = function() {
+  
 };
