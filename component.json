@@ -1,12 +1,12 @@
 {
   "name": "view",
-  "repo": "leafs/view",
+  "repo": "bredele/view",
   "description": "Data binding wrapper",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "leafs/data-binding": "*",
-    "leafs/store": "*"
+    "bredele/data-binding": "*",
+    "bredele/store": "*"
   },
   "development": {
     "component/assert": "*"
