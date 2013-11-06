@@ -1,6 +1,6 @@
 var View = require('view');
+var assert = require('component-assert');
 var Store = require('store');
-var assert = require('assert');
 
 
 describe('Template', function() {
@@ -67,7 +67,7 @@ describe('plugin', function() {
   it('should add data binding', function() {
     var plugin = {};
     view.plugin('test', plugin);
-    assert(view.binding.plugins.test === plugin);
+    assert(view.binding.plugins['data-test'] === plugin);
   });
 });
 
