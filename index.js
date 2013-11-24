@@ -41,7 +41,7 @@ function View(){
  * @api public
  */
 
-View.prototype.template = function(tmpl, store, mixin) {
+View.prototype.html = function(tmpl, store, mixin) {
   //TODO: I would like ideally work on adapter and not store
   this.store = new Store(store);
   //TODO: refactor data-biding, we did that because we can't initialize binding with model

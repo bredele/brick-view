@@ -13,13 +13,13 @@ describe('Template', function() {
   });
 
   it('should render simple string html', function() {
-    view.template('<button>template</button>');
+    view.html('<button>template</button>');
     view.insert(body);
     assert((view.dom instanceof HTMLElement) === true);
   });
 
   it('should accept HTML Element', function(){
-    view.template(body);
+    view.html(body);
     assert((view.dom instanceof HTMLElement) === true);
     assert(view.dom === body);
   });
@@ -34,7 +34,7 @@ describe('Template binding', function() {
   });
 
   it('should render template from object', function() {
-    view.template('<span>{github}</span>', {
+    view.html('<span>{github}</span>', {
       github:'leafs'
     });
     view.insert(body);
@@ -46,7 +46,7 @@ describe('Template binding', function() {
       var store = new Store({
         github:'leafs'
       });
-      view.template('<span>{github}</span>', store);
+      view.html('<span>{github}</span>', store);
       view.insert(body);
       assert(view.dom.innerText === 'leafs');
       store.set('github', 'petrofeed');
@@ -64,10 +64,14 @@ describe('plugin', function() {
     body = document.createElement('div');
   });
 
-  it('should add data binding', function() {
+  it('should add data attribute binding', function() {
     var plugin = {};
     view.plugin('test', plugin);
     assert(view.binding.plugins['data-test'] === plugin);
+  });
+
+  it('should add attribute binding', function(){
+
   });
 });
 
