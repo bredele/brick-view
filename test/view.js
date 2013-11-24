@@ -56,6 +56,23 @@ describe('Template binding', function() {
 });
 
 
+describe('fragment', function() {
+  var view = null,
+      body = null;
+  beforeEach(function() {
+    view = new View();
+    body = document.createElement('div');
+  });
+
+
+  it('should add attribute binding', function(){
+
+  });
+
+
+
+});
+
 describe('plugin', function() {
   var view = null,
       body = null;
@@ -64,15 +81,19 @@ describe('plugin', function() {
     body = document.createElement('div');
   });
 
+
+  it('should add attribute binding', function(){
+    var plugin = {};
+    view.attr('class', plugin);
+    assert(view.binding.plugins['class'] === plugin);
+  });
+
   it('should add data attribute binding', function() {
     var plugin = {};
-    view.plugin('test', plugin);
+    view.data('test', plugin);
     assert(view.binding.plugins['data-test'] === plugin);
   });
 
-  it('should add attribute binding', function(){
-
-  });
 });
 
 describe('insert', function() {
@@ -84,7 +105,7 @@ describe('insert', function() {
   });
 
   it('should insert view\'s dom', function() {
-    view.template('<span>template</span>');
+    view.html('<span>template</span>');
     view.insert(body);
 
     assert(body.firstChild === view.dom);

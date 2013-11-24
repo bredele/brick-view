@@ -52,6 +52,20 @@ View.prototype.html = function(tmpl, store, mixin) {
 
 
 /**
+ * Add attribute binding plugin.
+ * @param  {String} name 
+ * @param  {Object | Function} plug 
+ * @return {View}
+ * @api public
+ */
+
+View.prototype.attr = function(name, plug) {
+  this.binding.attr(name, plug);
+  return this;
+};
+
+
+/**
  * Add binding plugin.
  * @param  {String} name 
  * @param  {Object | Function} plug 
@@ -59,7 +73,7 @@ View.prototype.html = function(tmpl, store, mixin) {
  * @api public
  */
 
-View.prototype.plugin = function(name, plug) {
+View.prototype.data = function(name, plug) {
   this.binding.data(name, plug);
   return this;
 };
