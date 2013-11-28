@@ -124,5 +124,21 @@ describe('insert', function() {
 
 
 describe('destroy', function() {
-  
+  it('should call the destroy function of every regstered plugin', function(){
+    var view = new View(),
+        idx = 0,
+        destroy = function() {
+          ++idx;
+        };
+    view.attr('test', {
+      destroy: destroy
+    });
+    view.attr('other', {
+      destroy: destroy
+    });
+    view.data('another', {});
+    view.alive(document.createElement('div'));
+    view.destroy();
+    assert(idx === 2);
+  });
 });
