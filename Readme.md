@@ -8,16 +8,16 @@
 
 ## API
 
-### View#template(tmpl, model)
+### .html(tmpl, model)
   
   render template into dom and create binding with model (object or store)
 
-### View#place(node, location)
+### .insert(node, location)
 
   place the view dom into the document
   location can be beforebegin, afterbegin, beforeend (default), afterend
 
-### View#alive([node])
+### .alive([node])
 
   apply binding on node (node can be the view dom or a document node)
 
@@ -27,10 +27,10 @@
 ```js
 var View = require('view');
 var view = new View();
-view.template('<span>{name}</span>', {
+view.html('<span>{name}</span>', {
   name:'bredele'
 });
-view.place(document.body);
+view.insert(document.body);
 ```
 
 ## TODO

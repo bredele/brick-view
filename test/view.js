@@ -43,7 +43,7 @@ describe('Template binding', function() {
     body = document.createElement('div');
   });
 
-  it('should render template from object', function() {
+  it('should render template from object', function() { 
     view.html('<span>{github}</span>', {
       github:'leafs'
     });
