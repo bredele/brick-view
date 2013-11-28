@@ -23,6 +23,16 @@ describe('Template', function() {
     assert((view.dom instanceof HTMLElement) === true);
     assert(view.dom === body);
   });
+
+  it('should accept other template engine', function(){
+    view.html(function(obj){
+      var div = document.createElement('div');
+      div.className = obj.className;
+      return div;
+    }, {className: 'bredele'});
+    assert(view.dom.tagName === 'DIV');
+    assert(view.dom.className === 'bredele');
+  });
 });
 
 describe('Template binding', function() {

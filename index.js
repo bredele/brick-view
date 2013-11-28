@@ -43,10 +43,13 @@ function View(){
  */
 
 View.prototype.html = function(tmpl, store) { //add mixin obj?
-  this.store = new Store(store);
-  //TODO: refactor data-biding, we did that because we can't initialize binding with model
-  this.binding.model = this.store;
-  this.dom = domify(tmpl);
+  if(typeof tmpl === 'function') {
+    this.dom = tmpl.apply(null, [].slice.call(arguments, 1));
+  } else {
+    this.store = new Store(store);
+    this.binding.model = this.store;
+    this.dom = domify(tmpl);
+  }
   return this;
 };
 
