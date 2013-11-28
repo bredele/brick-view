@@ -111,13 +111,12 @@ View.prototype.alive = function(node) {
   this.binding.apply(this.dom);
 };
 
-// View.prototype.show = function() {
- 
-// };
 
-// View.prototype.hide = function() {
- 
-// };
+/**
+ * Call the destroy method for every registered plugin.
+ * 
+ * @api public
+ */
 
 View.prototype.destroy = function() {
   var plugins = this.binding.plugins;
@@ -127,3 +126,11 @@ View.prototype.destroy = function() {
     plugin.destroy && plugin.destroy();
   }
 };
+
+// View.prototype.show = function() {
+ 
+// };
+
+// View.prototype.hide = function() {
+ 
+// };
