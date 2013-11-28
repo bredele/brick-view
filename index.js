@@ -2,17 +2,6 @@ var Binding = require('binding');
 var Store = require('store');
 
 
-function domify(tmpl){
-  if(tmpl instanceof HTMLElement) return tmpl;
-  //may be by applying binding on this node we can have multiple
-  //children
-  var div = document.createElement('div');
-  div.innerHTML = tmpl;
-  return div.firstChild;
-}
-
-
-
 /**
  * Expose 'View'
  */
@@ -32,18 +21,34 @@ function View(){
   this.binding = new Binding();
 }
 
+/**
+ * String to DOM.
+ * @api pruvate
+ */
+
+function domify(tmpl){
+  if(tmpl instanceof HTMLElement) return tmpl;
+  //may be by applying binding on this node we can have multiple
+  //children
+  var div = document.createElement('div');
+  //use component insert
+  div.innerHTML = tmpl;
+  return div.firstChild;
+}
+
 
 /**
  * Turn HTML into DOM with data store.
  * The template is either a string or 
  * an existing HTML element.
- * @param  {String|HTMLElement} tmpl  
+ * @param  {String|HTMLElement|Function} tmpl  
  * @param  {Object} store can be nothing, an object or a store
  * @api public
  */
 
 View.prototype.html = function(tmpl, store) { //add mixin obj?
   if(typeof tmpl === 'function') {
+    //TODO: use component to array
     this.dom = tmpl.apply(null, [].slice.call(arguments, 1));
   } else {
     this.store = new Store(store);
@@ -101,7 +106,8 @@ View.prototype.insert = function(node) {
  */
 
 View.prototype.alive = function(node) {
-  this.binding.apply(node || this.dom);
+  if(node) this.dom = node;
+  this.binding.apply(this.dom);
 };
 
 // View.prototype.show = function() {
