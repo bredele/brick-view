@@ -1,5 +1,6 @@
-var Binding = require('binding');
-var Store = require('store');
+var Binding = require('binding'),
+    Store = require('store'),
+    once = require('once');
 
 
 /**
@@ -105,10 +106,11 @@ View.prototype.insert = function(node) {
  * @api publi
  */
 
-View.prototype.alive = function(node) {
+View.prototype.alive = once(function(node) {
+  //do we want to apply multiple times? no
   if(node) this.dom = node;
   this.binding.apply(this.dom);
-};
+});
 
 // View.prototype.show = function() {
  
