@@ -1,8 +1,7 @@
 var Binding = require('binding');
 var Store = require('store');
 
-//TODO: do our own component
-//with just what we need
+
 function domify(tmpl){
   if(tmpl instanceof HTMLElement) return tmpl;
   //may be by applying binding on this node we can have multiple
@@ -11,6 +10,8 @@ function domify(tmpl){
   div.innerHTML = tmpl;
   return div.firstChild;
 }
+
+
 
 /**
  * Expose 'View'
@@ -41,8 +42,7 @@ function View(){
  * @api public
  */
 
-View.prototype.html = function(tmpl, store, mixin) {
-  //TODO: I would like ideally work on adapter and not store
+View.prototype.html = function(tmpl, store) { //add mixin obj?
   this.store = new Store(store);
   //TODO: refactor data-biding, we did that because we can't initialize binding with model
   this.binding.model = this.store;
@@ -101,7 +101,14 @@ View.prototype.alive = function(node) {
   this.binding.apply(node || this.dom);
 };
 
+// View.prototype.show = function() {
+ 
+// };
 
-View.prototype.destroy = function() {
+// View.prototype.hide = function() {
+ 
+// };
+
+// View.prototype.destroy = function() {
   
-};
+// };
