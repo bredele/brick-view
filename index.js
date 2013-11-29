@@ -119,18 +119,13 @@ View.prototype.alive = function(node) {
  */
 
 View.prototype.destroy = function() {
-  var plugins = this.binding.plugins;
+  var plugins = this.binding.plugins,
+      parent = this.dom.parentNode;
   //has own properties?
   for(var name in plugins) {
     var plugin = plugins[name];
     plugin.destroy && plugin.destroy();
   }
+  if(parent) parent.removeChild(this.dom);
+
 };
-
-// View.prototype.show = function() {
- 
-// };
-
-// View.prototype.hide = function() {
- 
-// };
