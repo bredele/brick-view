@@ -4,7 +4,7 @@
 
 ## Installation
 
-    $ component install leafs/view
+    $ component install bredele/view
 
 ## API
 
@@ -21,6 +21,9 @@
 
   apply binding on node (node can be the view dom or a document node)
 
+### .destroy()
+
+  Remove view's dom and bindings.
 
 ## Usage
 
@@ -32,12 +35,6 @@ view.html('<span>{name}</span>', {
 });
 view.insert(document.body);
 ```
-
-## TODO
-
-  - [ ] test and code destroy (destory plugin and dom)
-  - [ ] add cross browser insert adjacent
-
 
 ## License
 
