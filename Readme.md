@@ -6,6 +6,17 @@
 
     $ component install bredele/view
 
+## Usage
+
+```js
+var View = require('view');
+var view = new View();
+view.html('<span>{name}</span>', {
+  name:'bredele'
+});
+view.insert(document.body);
+```
+
 ## API
 
 ### .html(tmpl, model)
@@ -24,17 +35,6 @@
 ### .destroy()
 
   Remove view's dom and bindings.
-
-## Usage
-
-```js
-var View = require('view');
-var view = new View();
-view.html('<span>{name}</span>', {
-  name:'bredele'
-});
-view.insert(document.body);
-```
 
 ## License
 
