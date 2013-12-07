@@ -1,5 +1,6 @@
 var Binding = require('binding'),
     Store = require('store'),
+    each = require('each'), //I would prefer not to use it
     event = require('event');
 
 
@@ -36,23 +37,22 @@ module.exports = View;
  * @api public
  */
 
-function View(){
-  var _this = this;
+function View(obj){ //we could do a mixin for something clean
   this.dom = null;
   this.store = null;
   this.binding = new Binding();
 
   //if it worh it, we should do that globally on binding
-  for(var l = events.length; l--;) {
-    var name = events[l];
-    binding.attr('on-' + name, function(node, method) {
-      event.bind(node, method, function(e) {
-        var fn = _this[method];
+  
+  each(events, function(idx, name) {
+    this.binding.attr('on-' + name, function(node, method) {
+      event.bind(node, name, function(e) { //don't forget to do off in destroy
+        var fn = obj[method];
         if (!fn) throw new Error('method .' + method + '() missing');
         fn(e);
       });
     });
-  }
+  }, this);
 }
 
 

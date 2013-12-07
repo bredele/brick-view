@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>View with events</title>
+</head>
+<body>
+	<button on-click="alert">alert</button>
+	<input on-input="bind" type="text">
+	<input type="checkbox" on-change="checked">
+	<span></span>
+	<script src="../build/build.js"></script>
+	<script>
+	  var View = require('view');
+	  var span = document.querySelector('span');
+
+	  var body = new View({
+	  	alert: function(){
+	  		alert('button clicked');
+	  	},
+	  	bind: function(ev) {
+	  		span.innerText = ev.target.value;
+	  	},
+	  	checked: function(){
+	  		alert('checked');
+	  	}
+	  });
+	  body.html(document.body); //we should set node in alive too
+	  body.alive(); 
+	</script>
+</body>
+</html>
