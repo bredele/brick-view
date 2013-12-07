@@ -1,5 +1,26 @@
 var Binding = require('binding'),
-    Store = require('store');
+    Store = require('store'),
+    event = require('event');
+
+
+/**
+ * Supportes events
+ */
+
+var events = [
+  'change',
+  'click',
+  'dblclick',
+  'mousedown',
+  'mouseup',
+  'blur',
+  'focus',
+  'input',
+  'submit',
+  'keydown',
+  'keypress',
+  'keyup'
+];
 
 
 /**
@@ -16,10 +37,24 @@ module.exports = View;
  */
 
 function View(){
+  var _this = this;
   this.dom = null;
   this.store = null;
   this.binding = new Binding();
+
+  //if it worh it, we should do that globally on binding
+  for(var l = events.length; l--;) {
+    var name = events[l];
+    binding.attr('on-' + name, function(node, method) {
+      event.bind(node, method, function(e) {
+        var fn = _this[method];
+        if (!fn) throw new Error('method .' + method + '() missing');
+        fn(e);
+      });
+    });
+  }
 }
+
 
 /**
  * String to DOM.
