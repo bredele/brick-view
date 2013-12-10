@@ -68,7 +68,7 @@ View.prototype.html = function(tmpl, store) { //add mixin obj?
  */
 
 View.prototype.attr = function(name, plug) {
-  this.binding.attr(name, plug);
+  this.binding.add(name, plug);
   return this;
 };
 
@@ -82,8 +82,7 @@ View.prototype.attr = function(name, plug) {
  */
 
 View.prototype.data = function(name, plug) {
-  this.binding.data(name, plug);
-  return this;
+  return this.attr('data-' + name, plug);
 };
 
 

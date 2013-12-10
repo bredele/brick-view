@@ -139,6 +139,7 @@ describe('destroy', function() {
     view.data('another', {});
     view.alive(document.createElement('div'));
     view.destroy();
+    debugger
     assert(idx === 2);
   });
 });
