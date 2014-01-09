@@ -15,12 +15,12 @@ describe('Template', function() {
   it('should render simple string html', function() {
     view.html('<button>template</button>');
     view.insert(body);
-    assert((view.dom instanceof HTMLElement) === true);
+    assert((view.dom instanceof Element) === true);
   });
 
   it('should accept HTML Element', function(){
     view.html(body);
-    assert((view.dom instanceof HTMLElement) === true);
+    assert((view.dom instanceof Element) === true);
     assert(view.dom === body);
   });
 

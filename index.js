@@ -27,7 +27,7 @@ function View(){
  */
 
 function domify(tmpl){
-  if(tmpl instanceof HTMLElement) return tmpl;
+  if(tmpl instanceof Element) return tmpl;
   //may be by applying binding on this node we can have multiple
   //children
   var div = document.createElement('div');
