@@ -27,7 +27,8 @@ function View(){
  */
 
 function domify(tmpl){
-  if(tmpl instanceof Element) return tmpl;
+  //ie8 doesn't support instanceof if left assignment not an object
+  if(typeof tmpl !== 'string') return tmpl;
   //may be by applying binding on this node we can have multiple
   //children
   var div = document.createElement('div');

@@ -30,8 +30,8 @@ describe('Template', function() {
       div.className = obj.className;
       return div;
     }, {className: 'bredele'});
-    assert(view.dom.tagName === 'DIV');
-    assert(view.dom.className === 'bredele');
+    assert.equal(view.dom.tagName,'DIV');
+    assert.equal(view.dom.className,'bredele');
   });
 });
 
@@ -48,19 +48,20 @@ describe('Template binding', function() {
       github:'leafs'
     });
     view.insert(body);
-    assert(view.dom.innerText === 'leafs');
+    assert(view.dom.innerHTML === 'leafs');
   });
 
   describe('store live-binding', function() {
     it('should update view\'s dom when store change', function() {
+
       var store = new Store({
         github:'leafs'
       });
       view.html('<span>{github}</span>', store);
       view.insert(body);
-      assert(view.dom.innerText === 'leafs');
+      assert(view.dom.innerHTML === 'leafs');
       store.set('github', 'petrofeed');
-      assert(view.dom.innerText === 'petrofeed');
+      assert(view.dom.innerHTML === 'petrofeed');
     });
   });
 });
@@ -139,7 +140,6 @@ describe('destroy', function() {
     view.data('another', {});
     view.alive(document.createElement('div'));
     view.destroy();
-    debugger
     assert(idx === 2);
   });
 });
