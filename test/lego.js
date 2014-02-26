@@ -53,17 +53,26 @@ describe("Store", function() {
 });
 
 
-describe("Build", function() {
+describe("Render", function() {
 	describe("Basic", function() {
 		it("should render regular html", function() {
 			//NOTE: may be we should do lego() and lego.extend 
 			var view =  lego('<button>lego</lego>');
-			view.build();
-
 			assert.equal(view.dom instanceof Element, true);
 			assert.equal(view.dom.innerHTML, 'lego');
 			assert.equal(view.dom.nodeName, 'BUTTON');
 		});
+
+		it("should set existing dom element", function() {
+			var div = document.createElement('div');
+			assert.equal(lego(div).dom, div);
+		});
+
+		// it("should place into document", function() {
+		// 	var anchor = document.createElement('div');
+		// 	var view = lego('<button>lego</button>');
+		// 	view.build(anchor);
+		// });
 	});
 	
 });
