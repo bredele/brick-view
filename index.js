@@ -1,4 +1,5 @@
-var Store = require('store');
+var Store = require('store'),
+		binding = require('binding');
 /**
  * Expose 'Lego'
  */
@@ -18,12 +19,16 @@ function domify(html) {
  * @api public
  */
 
-function Lego(tmpl) {
- if(!(this instanceof Lego)) return new Lego(tmpl);
- this.data = {};
+function Lego(tmpl, data) {
+ if(!(this instanceof Lego)) return new Lego(tmpl, data);
+ this.data = data || {};
+
+ //refactor binding
+ this.bindings = binding();
+ this.bindings.model = this;
+
  this.formatters = {}; //do we need formatters?
- //what if tmpl undefined?
- this.dom = (typeof tmpl === 'string') ? domify(tmpl) : tmpl;
+ this.dom = (typeof tmpl === 'string') ? domify(tmpl) : tmpl; //what if tmpl undefined?
 }
 
 
@@ -32,9 +37,12 @@ for (var key in Store.prototype) {
 }
 
 Lego.prototype.build = function() {
-	
+	//change for mount
+	this.bindings.apply(this.dom);
 };
 
 Lego.prototype.destroy = function() {
 
 };
+
+//stack for partials, directive

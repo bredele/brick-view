@@ -75,5 +75,109 @@ describe("Render", function() {
 		// });
 	});
 	
+	describe("Interpolation", function() {
+
+		describe("variable", function() {
+			it("should substitute variable with data", function() {
+				//refactor binding
+				var view = lego('<button>{ label }</button>');
+				view.set('label', 'lego');
+
+				assert.equal(view.dom.innerHTML, '{ label }');
+				view.build();
+				assert.equal(view.dom.innerHTML, 'lego');
+			});
+
+			it("should update dom when data changes", function() {
+				var view = lego('<button>{ label }</button>');
+				view.set('label', 'lego');
+				view.build();
+
+				view.set('label', 'bredele');
+				assert.equal(view.dom.innerHTML, 'bredele');			
+			});
+		});
+
+		describe("computed", function() {
+			it("should substitute variable with computed property", function() {
+				//refactor binding
+				var view = lego('<button>{ name }</button>', {
+					firstName: 'Olivier',
+					lastName : 'Wietrich'
+				});
+
+				view.compute('name', function() {
+					return this.firstName + ' ' + this.lastName;
+				});
+
+				view.build();
+
+				assert.equal(view.dom.innerHTML, 'Olivier Wietrich');
+			});
+
+			it("should update dom when data changes", function() {	
+				var view = lego('<button>{ name }</button>', {
+					firstName: 'Olivier',
+					lastName : 'Wietrich'
+				});
+
+				view.compute('name', function() {
+					return this.firstName + ' ' + this.lastName;
+				});
+
+				view.build();
+
+				view.set('firstName', 'Bredele');
+				assert.equal(view.dom.innerHTML, 'Bredele Wietrich');
+			});
+		});
+
+		describe("update", function() {
+
+			it("should update dom when view is reseted", function() {
+				//refactor binding
+				var view = lego('<a class="{className}" href="{link}">{ github }</a>', {
+					github: 'bredele',
+					className: 'github'
+				});
+
+				view.build();
+
+				view.set({
+					github: 'lego',
+					link: 'http://github.com/bredele/lego'
+				});
+
+				assert.equal(view.dom.innerHTML, 'lego');
+				assert.equal(view.dom.className, 'github');
+				assert.equal(view.dom.getAttribute('href'), 'http://github.com/bredele/lego');
+			});
+		});
+		
+		
+		describe("reset", function() {
+
+			it("should update dom when view is reseted", function() {
+				//refactor binding
+				var view = lego('<a class="{className}" href="{link}">{ github }</a>', {
+					github: 'bredele',
+					className: 'github'
+				});
+
+				view.build();
+
+				view.reset({
+					github: 'lego',
+					link: 'http://github.com/bredele/lego'
+				});
+
+				assert.equal(view.dom.innerHTML, 'lego');
+				assert.equal(view.dom.className, '');
+				assert.equal(view.dom.getAttribute('href'), 'http://github.com/bredele/lego');
+			});
+
+		});
+	});
+	
 });
 
