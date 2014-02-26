@@ -78,12 +78,21 @@ describe("Render", function() {
 	describe("Interpolation", function() {
 
 		describe("variable", function() {
+
 			it("should substitute variable with data", function() {
 				//refactor binding
 				var view = lego('<button>{ label }</button>');
 				view.set('label', 'lego');
 
 				assert.equal(view.dom.innerHTML, '{ label }');
+				view.build();
+				assert.equal(view.dom.innerHTML, 'lego');
+			});
+
+			it('should initialize dom with data', function() {
+				var view = lego('<button>{ label }</button>', {
+					label: 'lego'
+				});
 				view.build();
 				assert.equal(view.dom.innerHTML, 'lego');
 			});
