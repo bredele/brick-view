@@ -186,7 +186,31 @@ describe("Render", function() {
 			});
 
 		});
+
 	});
+
+
+	describe("Plugins/Blocks", function() {
+		
+	});
+	
+
+	// describe("Lifecycle hooks", function() {
+		
+
+	// 	it("@ready", function() {
+			
+	// 	});
+		
+	// 	it("@inserted", function() {
+			
+	// 	});
+
+	// 	// it("@destroyed", function() {
+			
+	// 	// });
+	// });
+
 	
 });
 
