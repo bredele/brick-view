@@ -139,8 +139,8 @@ Lego.prototype.build = function(parent, query) {
  */
 
 Lego.prototype.remove = function() {
-	this.emit('before removed');
 	var parent = this.el.parentElement;
+	this.emit('before removed');
 	this.bindings.remove();
 	if(parent) {
 			//this.emit('removed');
