@@ -264,6 +264,18 @@ describe('Destroy', function() {
 
 describe("Lifecycle hooks", function() {
 
+	describe("@rendered", function() {
+		it("emits 'rendered' when el is rendered", function(done) {
+			var view = lego();
+			view.on('rendered', function() {
+				done();
+			});
+			view.dom('<span>lego</span>');
+		});
+		
+	});
+	
+
 	describe("@inserted", function() {
 		
 		it("emits 'before inserted' everytine on build only if el is defined", function() {

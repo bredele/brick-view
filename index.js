@@ -96,7 +96,7 @@ Lego.prototype.dom = function(tmpl) {
 	} else {
 		this.el = tmpl;
 	}
-	//this.emit('rendered');
+	this.emit('rendered');
 	return this;
 };
 
