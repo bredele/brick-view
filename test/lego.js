@@ -8,7 +8,7 @@ describe("Constructor", function() {
 		var view = lego();
 		assert.equal(typeof view.add, 'function');	
 		assert.equal(typeof view.build, 'function');
-		assert.equal(typeof view.destroy, 'function');			
+		assert.equal(typeof view.remove, 'function');			
 
 	});
 
@@ -244,19 +244,19 @@ describe("Blocks (aka plugins)", function() {
 	});
 });
 
-describe('Destroy', function() {
+describe('Remove', function() {
 
 	it('should remove from parent element if exists', function() {
 		var parent = document.createElement('div');
 
 		var view = lego('<button>maple</button>');
 		view.build(parent);
-		view.destroy();
+		view.remove();
 		assert.equal(parent.innerHTML, '');
 	});
 
   //use spy
-	it('should destroy bindings');
+	it('should remove bindings');
 
 	//view.el still exist, memory leaks?
 
@@ -331,9 +331,25 @@ describe("Lifecycle hooks", function() {
 		});
 	});
 
-	// it("@destroyed", function() {
+	describe("@removed", function() {
+		it("emits 'before removed' before removing el", function(done) {
+			var view = lego('<span>lego</span>');
+			view.on('before removed', function() {
+				if(view.el.parentElement) done();
+			});
+			view.remove();
+		});
+
+		it("emits 'removed' on remove", function(done) {
+			var view = lego('<span>lego</span>');
+			view.on('removed', function() {
+				done();
+			});
+			view.remove();
+		});
 		
-	// });
+	});
+	
 	
 	// 	it("should emit a removed event", function() {
 	// 	var view = new View(),
