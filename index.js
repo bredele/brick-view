@@ -48,17 +48,24 @@ Lego.prototype.add = function(name, plug) {
 	return this;
 };
 
-Lego.prototype.stack = function() {
-
-};
 
 Lego.prototype.build = function() {
 	//change for mount
 	this.bindings.scan(this.dom);
 };
 
-Lego.prototype.destroy = function() {
+Lego.prototype.stack = function() {
 
 };
 
-//stack for partials, directive
+Lego.prototype.destroy = function() {
+	var parent = this.dom.parentElement;
+	this.bindings.remove();
+	if(parent) {
+			//this.emit('removed');
+			parent.removeChild(this.dom);
+	}
+	return this;
+};
+
+//partials, directive

@@ -209,7 +209,38 @@ describe("Render", function() {
 			assert.notEqual(view.bindings.plugins['class'],undefined);
 			assert.notEqual(view.bindings.plugins['other'],undefined);		
 
-		});	
+		});
+	});
+
+	describe('Destroy', function() {
+
+		// it("should emit a removed event", function() {
+		// 	var view = new View(),
+		// 	    removed = false;
+
+		// 	view.html('<button>maple</button>');
+		// 	view.el();
+		// 	view.on('removed', function() {
+		// 		removed = true;
+		// 	});
+		// 	view.remove();
+		// 	assert.equal(removed, true);
+		// });
+
+		it('should remove from parent element if exists', function() {
+			var parent = document.createElement('div');
+
+			var view = lego('<button>maple</button>');
+			view.build(parent);
+			view.destroy();
+			assert.equal(parent.innerHTML, '');
+		});
+
+    //use spy
+		it('should destroy bindings');
+
+		//view.dom still exist, memory leaks?
+
 	});
 	
 	// describe("Lifecycle hooks", function() {
