@@ -6,8 +6,7 @@ describe("Constructor", function() {
 
 	it("#new", function() {
 		var view = lego();
-		assert.equal(typeof view.add, 'function');
-		assert.equal(typeof view.stack, 'function');		
+		assert.equal(typeof view.add, 'function');	
 		assert.equal(typeof view.build, 'function');
 		assert.equal(typeof view.destroy, 'function');			
 
@@ -61,14 +60,14 @@ describe("Render", function() {
 		it("should render regular html", function() {
 			//NOTE: may be we should do lego() and lego.extend 
 			var view =  lego('<button>lego</lego>');
-			assert.equal(view.dom instanceof Element, true);
-			assert.equal(view.dom.innerHTML, 'lego');
-			assert.equal(view.dom.nodeName, 'BUTTON');
+			assert.equal(view.el instanceof Element, true);
+			assert.equal(view.el.innerHTML, 'lego');
+			assert.equal(view.el.nodeName, 'BUTTON');
 		});
 
 		it("should set existing dom element", function() {
 			var div = document.createElement('div');
-			assert.equal(lego(div).dom, div);
+			assert.equal(lego(div).el, div);
 		});
 
 		// it("should place into document", function() {
@@ -87,9 +86,9 @@ describe("Render", function() {
 				var view = lego('<button>{{ label }}</button>');
 				view.set('label', 'lego');
 
-				assert.equal(view.dom.innerHTML, '{{ label }}');
+				assert.equal(view.el.innerHTML, '{{ label }}');
 				view.build();
-				assert.equal(view.dom.innerHTML, 'lego');
+				assert.equal(view.el.innerHTML, 'lego');
 			});
 
 			it('should initialize dom with data', function() {
@@ -97,7 +96,7 @@ describe("Render", function() {
 					label: 'lego'
 				});
 				view.build();
-				assert.equal(view.dom.innerHTML, 'lego');
+				assert.equal(view.el.innerHTML, 'lego');
 			});
 
 			it("should update dom when data changes", function() {
@@ -106,7 +105,7 @@ describe("Render", function() {
 				view.build();
 
 				view.set('label', 'bredele');
-				assert.equal(view.dom.innerHTML, 'bredele');			
+				assert.equal(view.el.innerHTML, 'bredele');			
 			});
 		});
 
@@ -124,7 +123,7 @@ describe("Render", function() {
 
 				view.build();
 
-				assert.equal(view.dom.innerHTML, 'Olivier Wietrich');
+				assert.equal(view.el.innerHTML, 'Olivier Wietrich');
 			});
 
 			it("should update dom when data changes", function() {	
@@ -140,7 +139,7 @@ describe("Render", function() {
 				view.build();
 
 				view.set('firstName', 'Bredele');
-				assert.equal(view.dom.innerHTML, 'Bredele Wietrich');
+				assert.equal(view.el.innerHTML, 'Bredele Wietrich');
 			});
 		});
 
@@ -160,9 +159,9 @@ describe("Render", function() {
 					link: 'http://github.com/bredele/lego'
 				});
 
-				assert.equal(view.dom.innerHTML, 'lego');
-				assert.equal(view.dom.className, 'github');
-				assert.equal(view.dom.getAttribute('href'), 'http://github.com/bredele/lego');
+				assert.equal(view.el.innerHTML, 'lego');
+				assert.equal(view.el.className, 'github');
+				assert.equal(view.el.getAttribute('href'), 'http://github.com/bredele/lego');
 			});
 		});
 		
@@ -183,9 +182,9 @@ describe("Render", function() {
 					link: 'http://github.com/bredele/lego'
 				});
 
-				assert.equal(view.dom.innerHTML, 'lego');
-				assert.equal(view.dom.className, '');
-				assert.equal(view.dom.getAttribute('href'), 'http://github.com/bredele/lego');
+				assert.equal(view.el.innerHTML, 'lego');
+				assert.equal(view.el.className, '');
+				assert.equal(view.el.getAttribute('href'), 'http://github.com/bredele/lego');
 			});
 
 		});
@@ -201,11 +200,11 @@ describe("Insert", function() {
 				var view = lego('<span>maple</span>');
 				view.build();
 				//it's the div
-				//assert.equal(view.dom.parentElement, null);
+				//assert.equal(view.el.parentElement, null);
 
 	      //parent dom element
 				view.build(parent);
-				assert.equal(parent.childNodes[0], view.dom);
+				assert.equal(parent.childNodes[0], view.el);
 			});
 });
 
@@ -244,25 +243,32 @@ describe('Destroy', function() {
   //use spy
 	it('should destroy bindings');
 
-	//view.dom still exist, memory leaks?
+	//view.el still exist, memory leaks?
 
 });
 
 
 describe("Lifecycle hooks", function() {
 	
-	it("emits 'inserted' on build", function(done) {
-		var view = lego();
+	it("emits 'inserted' on build only if el defined", function() {
+		var view = lego(),
+				parent = document.createElement('div'),
+				defined = false;
 
 		view.on('inserted', function() {
-			done();
+			defined = true;
 		});
 
-		view.build(document.createElement('div'));
+		view.build(parent);
+		assert.equal(defined, false);
+		debugger
+		view.dom('<span>lego</span>');
+		view.build(parent);
+		assert.equal(defined, true);		
 	});
 
-	it("emits 'compiled' on build only once", function(done) {
-		var view = lego(),
+	it("emits 'compiled' on build only once", function() {
+		var view = lego('<span>lego</span>'),
 				idx = 0;
 
 		view.on('compiled', function() {

@@ -1,6 +1,8 @@
 var Store = require('store'),
 		binding = require('binding'),
 		each = require('each');
+
+
 /**
  * Expose 'Lego'
  */
@@ -8,15 +10,17 @@ var Store = require('store'),
 module.exports = Lego;
 
 
-function domify(html) {
-	var div = document.createElement('div');
-	div.insertAdjacentHTML('beforeend', html);
-	return div.firstChild;
-}
-
-
 /**
  * Lego constructor.
+ * example:
+ * 
+ *   var lego = require('lego');
+ *   
+ *   lego('<span>lego</span>');
+ *   lego('<span>{{ label }}</span>', {
+ *     label: 'lego'
+ *   });
+ *   
  * @api public
  */
 
@@ -29,13 +33,37 @@ function Lego(tmpl, data) {
  this.bindings.model = this;
 
  this.formatters = {}; //do we need formatters?
- this.dom = (typeof tmpl === 'string') ? domify(tmpl) : tmpl; //what if tmpl undefined?
+ this.el = null;
+ this.dom(tmpl);
+ this.once('inserted', function() {
+ 	this.emit('compiled');
+ 	this.bindings.scan(this.el);
+ }, this);
 }
 
+
+//mixin
 
 for (var key in Store.prototype) {
   Lego.prototype[key] = Store.prototype[key];
 }
+
+
+/**
+ * Add attribure binding.
+ * example:
+ *
+ *   view.add('on', event(obj));
+ *   view.add({
+ *     'on' : event(obj).
+ *     'repeat' : repeat()
+ *   });
+ *   
+ * @param {String|Object} name
+ * @param {Function} plug 
+ * @return {Lego}
+ * @api public
+ */
 
 Lego.prototype.add = function(name, plug) {
 	if(typeof name !== 'string') {
@@ -47,23 +75,69 @@ Lego.prototype.add = function(name, plug) {
 };
 
 
-Lego.prototype.build = function(parent) {
-	//change for mount
-	this.bindings.scan(this.dom);
-	if(parent) parent.appendChild(this.dom); //use cross browser insertAdjacentElement
+/**
+ * Render template into dom.
+ * example:
+ *
+ *   view.dom('<span>lego</span>');
+ *   view.dom(dom);
+ *   
+ * @param  {String|Element} tmpl
+ * @return {Lego}
+ * @api public
+ */
+
+Lego.prototype.dom = function(tmpl) {
+	if(typeof tmpl === 'string') {
+		var div = document.createElement('div');
+		div.insertAdjacentHTML('beforeend', tmpl);
+		this.el = div.firstChild;
+	} else {
+		this.el = tmpl;
+	}
 	return this;
 };
 
-Lego.prototype.stack = function() {
 
+/**
+ * Substitute variable and apply
+ * attribute bindings.
+ * example:
+ *
+ *    view.build();
+ *    view.build(el);
+ *
+ *    //only apply attribute bindings
+ *    view.build)(el, true);
+ *    
+ * @param  {Element} parent
+ * @return {Lego}
+ * @api public
+ */
+
+Lego.prototype.build = function(parent) {
+	if(this.el) {
+		this.emit('inserted');
+		if(parent) parent.appendChild(this.el); //use cross browser insertAdjacentElement
+	}
+	return this;
 };
 
+
+/**
+ * Remove attribute bindings. store
+ * listeners and remove dom.
+ * 
+ * @return {Lego}
+ * @api public
+ */
+
 Lego.prototype.destroy = function() {
-	var parent = this.dom.parentElement;
+	var parent = this.el.parentElement;
 	this.bindings.remove();
 	if(parent) {
 			//this.emit('removed');
-			parent.removeChild(this.dom);
+			parent.removeChild(this.el);
 	}
 	return this;
 };
