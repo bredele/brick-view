@@ -166,28 +166,28 @@ describe("Render", function() {
 		});
 		
 		
-		describe("reset", function() {
+		// describe("reset", function() {
 
-			it("should update dom when view is reseted", function() {
-				//refactor binding
-				var view = lego('<a class="{{className}}" href="{{link}}">{{ github }}</a>', {
-					github: 'bredele',
-					className: 'github'
-				});
+		// 	it("should update dom when view is reseted", function() {
+		// 		//refactor binding
+		// 		var view = lego('<a class="{{className}}" href="{{link}}">{{ github }}</a>', {
+		// 			github: 'bredele',
+		// 			className: 'github'
+		// 		});
 
-				view.build();
+		// 		view.build();
 
-				view.reset({
-					github: 'lego',
-					link: 'http://github.com/bredele/lego'
-				});
+		// 		view.reset({
+		// 			github: 'lego',
+		// 			link: 'http://github.com/bredele/lego'
+		// 		});
 
-				assert.equal(view.el.innerHTML, 'lego');
-				assert.equal(view.el.className, '');
-				assert.equal(view.el.getAttribute('href'), 'http://github.com/bredele/lego');
-			});
+		// 		assert.equal(view.el.innerHTML, 'lego');
+		// 		assert.equal(view.el.className, '');
+		// 		assert.equal(view.el.getAttribute('href'), 'http://github.com/bredele/lego');
+		// 	});
 
-		});
+		// });
 
 	});
 

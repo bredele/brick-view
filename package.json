@@ -1,10 +1,11 @@
 {
   "name": "lego",
-  "version": "0.0.1",
-  "description": "Data binding wrapper",
+  "version": "0.0.2",
+  "description": "MVVM bricks to create large scale and real time web applications in a flash.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "zuul -- test/*.js",
+    "test-local": "zuul --local -- test/*.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,10 @@
   "browser": {
     "store": "store-component",
     "binding": "data-binding",
-    "each" : "each-bredele"
+    "each": "each-bredele"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "zuul": "~1.5.4"
   }
 }

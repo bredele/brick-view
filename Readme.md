@@ -1,5 +1,6 @@
 # Lego
 
+[![Build Status](https://travis-ci.org/bredele/lego.png?branch=master)](https://travis-ci.org/bredele/lego)
 <!-- Remember where you were young, how simple it was to stack few blocks of Lego to create your dream house? -->
 
 
