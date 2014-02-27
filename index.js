@@ -39,9 +39,7 @@ for (var key in Store.prototype) {
 
 Lego.prototype.add = function(name, plug) {
 	if(typeof name !== 'string') {
-		each(name, function(attr, obj) {
-			this.add(attr, obj);
-		}, this);
+		each(name, this.add, this);
 	} else {
 		this.bindings.add(name, plug);
 	}

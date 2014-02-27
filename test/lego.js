@@ -1,6 +1,7 @@
 var lego = require('lego'),
 		assert = require('assert');
 
+
 describe("Constructor", function() {
 
 	it("#new", function() {
@@ -55,7 +56,9 @@ describe("Store", function() {
 
 
 describe("Render", function() {
+
 	describe("Basic", function() {
+
 		it("should render regular html", function() {
 			//NOTE: may be we should do lego() and lego.extend 
 			var view =  lego('<button>lego</lego>');
@@ -189,32 +192,23 @@ describe("Render", function() {
 		});
 
 	});
+	
+	// describe("Lifecycle hooks", function() {
+		
 
+	// 	it("@ready", function() {
+			
+	// 	});
+		
+	// 	it("@inserted", function() {
+			
+	// 	});
 
-	describe("Blocks (aka plugins)", function() {
-
-		it("should add plugin", function() {
-			var plugin = function() {};
-			var view = lego().add('class', plugin);
-			assert.equal(view.bindings.plugins['class'], plugin);
-		});
-
-		it("should add multiple binding's plugins", function() {
-			var view = lego();
-			view.add({
-				"class" : function(){},
-				"other" : function(){}
-			});
-
-			assert.notEqual(view.bindings.plugins['class'],undefined);
-			assert.notEqual(view.bindings.plugins['other'],undefined);		
-
-		});
-	});
-
-	describe('Destroy', function() {
-
-		// it("should emit a removed event", function() {
+	// 	// it("@destroyed", function() {
+			
+	// 	// });
+	// 	
+			// it("should emit a removed event", function() {
 		// 	var view = new View(),
 		// 	    removed = false;
 
@@ -226,6 +220,33 @@ describe("Render", function() {
 		// 	view.remove();
 		// 	assert.equal(removed, true);
 		// });
+	// });
+
+	
+});
+
+
+	describe("Blocks (aka plugins)", function() {
+
+		it("should add plugin", function() {
+			var plugin = function() {};
+			var view = lego().add('class', plugin);
+			assert.equal(view.bindings.plugins['class'], plugin);
+		});
+
+		it("should add multiple binding's plugins", function() {
+			var view = lego().add({
+				"class" : function(){},
+				"other" : function(){}
+			});
+
+			assert.notEqual(view.bindings.plugins['class'],undefined);
+			assert.notEqual(view.bindings.plugins['other'],undefined);		
+
+		});
+	});
+
+	describe('Destroy', function() {
 
 		it('should remove from parent element if exists', function() {
 			var parent = document.createElement('div');
@@ -243,22 +264,20 @@ describe("Render", function() {
 
 	});
 	
-	// describe("Lifecycle hooks", function() {
-		
+// function olivier(tmpl, data) {
 
-	// 	it("@ready", function() {
-			
-	// 	});
-		
-	// 	it("@inserted", function() {
-			
-	// 	});
+// 	var test = function(){
+// 		return test.build();
+// 	}
 
-	// 	// it("@destroyed", function() {
-			
-	// 	// });
-	// });
+// 	test.add = function() {
+// 		console.log('add', this);
+// 	};
 
-	
-});
+// 	test.build = function() {
+// 		console.log('build with ', tmpl, data);
+// 	};
+
+// 	return test;
+// }
 

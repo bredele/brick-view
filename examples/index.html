@@ -8,31 +8,28 @@
   <h1 class="me">My name is {firstname} {lastname}</h1>
   <script src="../build/build.js"></script>
   <script>
-    var View = require('view');
+    var lego = require('lego');
     var tmpl = document.querySelector('.me');
 
     //example 2
-    var view2 = new View();
-    view2.html(tmpl, {
+    var me = lego(tmpl, {
       firstname : 'olivier',
       lastname : 'wietrich'
     });
-    view2.alive();
+    me.build();
 
 
     //example 1
-    var view1 = new View();
-    view1.html('<button>olivier</button>');
-    view1.insert(document.body);
+    var olivier = lego('<button>olivier</button>');
+    olivier.build(document.body);
 
 
     //example 3
-    var view3 = new View();
-    view3.html('<h2>and my github is <a href="{link}">{github}</a></h2>', {
+    var github = lego('<h2>and my github is <a href="{link}">{github}</a></h2>', {
       github : 'bredele',
       link: 'http://github.com/bredele'
     });
-    view3.insert(document.body);
+    github.build(document.body);
   </script>
 </body>
 </html>
