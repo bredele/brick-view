@@ -35,9 +35,10 @@ function Lego(tmpl, data) {
  this.formatters = {}; //do we need formatters?
  this.el = null;
  this.dom(tmpl);
- this.once('inserted', function() {
+ this.once('before inserted', function(bool) {
+ 	this.emit('before compiled');
+ 	this.bindings.scan(this.el, bool);
  	this.emit('compiled');
- 	this.bindings.scan(this.el);
  }, this);
 }
 
@@ -95,6 +96,7 @@ Lego.prototype.dom = function(tmpl) {
 	} else {
 		this.el = tmpl;
 	}
+	//this.emit('rendered');
 	return this;
 };
 
@@ -111,14 +113,18 @@ Lego.prototype.dom = function(tmpl) {
  *    view.build)(el, true);
  *    
  * @param  {Element} parent
+ * @param {Boolean} query
  * @return {Lego}
  * @api public
  */
 
-Lego.prototype.build = function(parent) {
+Lego.prototype.build = function(parent, query) {
 	if(this.el) {
-		this.emit('inserted');
-		if(parent) parent.appendChild(this.el); //use cross browser insertAdjacentElement
+		this.emit('before inserted', query); //should we pass parent?
+		if(parent) {
+			parent.appendChild(this.el); //use cross browser insertAdjacentElement
+			this.emit('inserted');
+		}
 	}
 	return this;
 };

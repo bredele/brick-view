@@ -190,7 +190,23 @@ describe("Render", function() {
 		});
 
 	});
+
 });
+
+describe("Build", function() {
+	it('should only apply attribute binding', function() {
+		var view = lego('<a data-href="link">{{link}}</a>', {link: 'github'});
+		//TODO: we should pass view
+		view.add('data-href', function(node, str) {
+			node.setAttribute('href', str);
+		});
+		//NOTE: get better api, what if parent undefined?
+		view.build(document.createElement('div'), true);
+		assert.equal(view.el.innerHTML, '{{link}}');
+		assert.equal(view.el.getAttribute('href'), 'link');
+	});
+});
+
 
 describe("Insert", function() {
 
@@ -207,7 +223,6 @@ describe("Insert", function() {
 				assert.equal(parent.childNodes[0], view.el);
 			});
 });
-
 
 describe("Blocks (aka plugins)", function() {
 
@@ -247,37 +262,61 @@ describe('Destroy', function() {
 
 });
 
-
 describe("Lifecycle hooks", function() {
-	
-	it("emits 'inserted' on build only if el defined", function() {
-		var view = lego(),
-				parent = document.createElement('div'),
-				defined = false;
 
-		view.on('inserted', function() {
-			defined = true;
+	describe("@inserted", function() {
+		
+		it("emits 'before inserted' everytine on build only if el is defined", function() {
+			var view = lego(),
+					defined = false;
+			//TODO: should we test the arguments?
+			view.on('before inserted', function() {
+				defined = true;
+			});
+
+			//el null
+			view.build();
+			assert.equal(defined, false);
+
+			//el span
+			view.dom('<span>lego</span>');
+			view.build();
+			assert.equal(defined, true);
 		});
+		
+		it("emits 'inserted' on build only if parent is defined", function(done) {
+			var view = lego('<span>lego</span>');
 
-		view.build(parent);
-		assert.equal(defined, false);
-		debugger
-		view.dom('<span>lego</span>');
-		view.build(parent);
-		assert.equal(defined, true);		
+			view.on('inserted', function() {
+				done();
+			});
+
+			view.build(document.createElement('div'));	
+		});
 	});
 
-	it("emits 'compiled' on build only once", function() {
-		var view = lego('<span>lego</span>'),
-				idx = 0;
+	describe("@compiled", function() {
 
-		view.on('compiled', function() {
-			idx++;
+		it("emits 'before compiled' just before compilation", function(done) {
+			var view = lego('<span>{{lego}}</span>');
+			view.on('before compiled', function() {
+				if(view.el.innerHTML === '{{lego}}') done();
+			});
+			view.build();
 		});
 
-		view.build(document.createElement('div'));
-		view.build(document.createElement('div'));
-		assert.equal(idx, 1);
+		it("emits 'compiled' on build only once", function() {
+			var view = lego('<span>lego</span>'),
+					idx = 0;
+
+			view.on('compiled', function() {
+				idx++;
+			});
+
+			view.build(document.createElement('div'));
+			view.build(document.createElement('div'));
+			assert.equal(idx, 1);
+		});
 	});
 
 	// it("@destroyed", function() {
