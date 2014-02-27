@@ -1,40 +1,21 @@
 # View
 
-  > Data binding wrapper
+<!-- Remember where you were young, how simple it was to stack few blocks of Lego to create your dream house? -->
+
 
 ## Installation
 
-    $ component install bredele/view
+    $ component install bredele/lego
 
 ## Usage
 
 ```js
-var View = require('view');
-var view = new View();
-view.html('<span>{name}</span>', {
-  name:'bredele'
+var view = lego('<span>{{name}}</span>', {
+	name: 'bredele'
 });
-view.insert(document.body);
+
+view.build(document.body);
 ```
-
-## API
-
-### .html(tmpl, model)
-  
-  render template into dom and create binding with model (object or store)
-
-### .insert(node, location)
-
-  place the view dom into the document
-  location can be beforebegin, afterbegin, beforeend (default), afterend
-
-### .alive([node])
-
-  apply binding on node (node can be the view dom or a document node)
-
-### .destroy()
-
-  Remove view's dom and bindings.
 
 ## License
 
