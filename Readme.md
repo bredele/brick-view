@@ -8,7 +8,7 @@
     $ component install bredele/lego
 
 
-## 30 seconds example
+## 10 seconds example
 
 ```js
 var view = lego('<span>{{name}}</span>', {
