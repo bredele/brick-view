@@ -5,7 +5,8 @@ describe("Constructor", function() {
 
 	it("#new", function() {
 		var view = lego();
-		assert.equal(typeof view.use, 'function');	
+		assert.equal(typeof view.add, 'function');
+		assert.equal(typeof view.stack, 'function');		
 		assert.equal(typeof view.build, 'function');
 		assert.equal(typeof view.destroy, 'function');			
 
@@ -190,11 +191,27 @@ describe("Render", function() {
 	});
 
 
-	describe("Plugins/Blocks", function() {
-		
+	describe("Blocks (aka plugins)", function() {
+
+		it("should add plugin", function() {
+			var plugin = function() {};
+			var view = lego().add('class', plugin);
+			assert.equal(view.bindings.plugins['class'], plugin);
+		});
+
+		it("should add multiple binding's plugins", function() {
+			var view = lego();
+			view.add({
+				"class" : function(){},
+				"other" : function(){}
+			});
+
+			assert.notEqual(view.bindings.plugins['class'],undefined);
+			assert.notEqual(view.bindings.plugins['other'],undefined);		
+
+		});	
 	});
 	
-
 	// describe("Lifecycle hooks", function() {
 		
 

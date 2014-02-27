@@ -1,5 +1,6 @@
 var Store = require('store'),
-		binding = require('binding');
+		binding = require('binding'),
+		each = require('each');
 /**
  * Expose 'Lego'
  */
@@ -35,6 +36,21 @@ function Lego(tmpl, data) {
 for (var key in Store.prototype) {
   Lego.prototype[key] = Store.prototype[key];
 }
+
+Lego.prototype.add = function(name, plug) {
+	if(typeof name !== 'string') {
+		each(name, function(attr, obj) {
+			this.add(attr, obj);
+		}, this);
+	} else {
+		this.bindings.add(name, plug);
+	}
+	return this;
+};
+
+Lego.prototype.stack = function() {
+
+};
 
 Lego.prototype.build = function() {
 	//change for mount

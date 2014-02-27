@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "Data binding wrapper",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "mocha"
   },
@@ -30,10 +27,12 @@
   },
   "dependencies": {
     "data-binding": "0.0.0",
-    "store-component": "~0.1.2"
+    "store-component": "~0.1.2",
+    "each-bredele": "0.0.1"
   },
   "browser": {
     "store": "store-component",
-    "binding" : "data-binding"
-  },
+    "binding": "data-binding",
+    "each" : "each-bredele"
+  }
 }

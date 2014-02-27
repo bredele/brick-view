@@ -1,4 +1,4 @@
-# View
+# Lego
 
 <!-- Remember where you were young, how simple it was to stack few blocks of Lego to create your dream house? -->
 
@@ -7,7 +7,8 @@
 
     $ component install bredele/lego
 
-## Usage
+
+## 30 seconds example
 
 ```js
 var view = lego('<span>{{name}}</span>', {
@@ -16,6 +17,8 @@ var view = lego('<span>{{name}}</span>', {
 
 view.build(document.body);
 ```
+
+## Concept
 
 ## License
 
