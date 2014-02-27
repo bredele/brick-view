@@ -47,9 +47,11 @@ Lego.prototype.add = function(name, plug) {
 };
 
 
-Lego.prototype.build = function() {
+Lego.prototype.build = function(parent) {
 	//change for mount
 	this.bindings.scan(this.dom);
+	if(parent) parent.appendChild(this.dom); //use cross browser insertAdjacentElement
+	return this;
 };
 
 Lego.prototype.stack = function() {

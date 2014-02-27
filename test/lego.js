@@ -38,10 +38,9 @@ describe("Constructor", function() {
 describe("Store", function() {
 	it('should behave as a store', function() {
 		var view = lego();
-		view.set('github', 'bredele');
+		view.set('color', 'red');
 
-		var val = view.get('github');
-		assert.equal(val, 'bredele');
+		assert.equal(view.get('color'), 'red');
 	});
 
 	it("should behave as an emitter", function(done) {
@@ -192,78 +191,107 @@ describe("Render", function() {
 		});
 
 	});
-	
-	// describe("Lifecycle hooks", function() {
-		
+});
 
-	// 	it("@ready", function() {
-			
-	// 	});
-		
-	// 	it("@inserted", function() {
-			
-	// 	});
+describe("Insert", function() {
 
-	// 	// it("@destroyed", function() {
-			
-	// 	// });
-	// 	
-			// it("should emit a removed event", function() {
-		// 	var view = new View(),
-		// 	    removed = false;
+	it('should insert into parent element (if exists)', function() {
+				var parent = document.createElement('div');
 
-		// 	view.html('<button>maple</button>');
-		// 	view.el();
-		// 	view.on('removed', function() {
-		// 		removed = true;
-		// 	});
-		// 	view.remove();
-		// 	assert.equal(removed, true);
-		// });
-	// });
+				var view = lego('<span>maple</span>');
+				view.build();
+				//it's the div
+				//assert.equal(view.dom.parentElement, null);
 
-	
+	      //parent dom element
+				view.build(parent);
+				assert.equal(parent.childNodes[0], view.dom);
+			});
 });
 
 
-	describe("Blocks (aka plugins)", function() {
+describe("Blocks (aka plugins)", function() {
 
-		it("should add plugin", function() {
-			var plugin = function() {};
-			var view = lego().add('class', plugin);
-			assert.equal(view.bindings.plugins['class'], plugin);
-		});
-
-		it("should add multiple binding's plugins", function() {
-			var view = lego().add({
-				"class" : function(){},
-				"other" : function(){}
-			});
-
-			assert.notEqual(view.bindings.plugins['class'],undefined);
-			assert.notEqual(view.bindings.plugins['other'],undefined);		
-
-		});
+	it("should add plugin", function() {
+		var plugin = function() {};
+		var view = lego().add('class', plugin);
+		assert.equal(view.bindings.plugins['class'], plugin);
 	});
 
-	describe('Destroy', function() {
-
-		it('should remove from parent element if exists', function() {
-			var parent = document.createElement('div');
-
-			var view = lego('<button>maple</button>');
-			view.build(parent);
-			view.destroy();
-			assert.equal(parent.innerHTML, '');
+	it("should add multiple binding's plugins", function() {
+		var view = lego().add({
+			"class" : function(){},
+			"other" : function(){}
 		});
 
-    //use spy
-		it('should destroy bindings');
-
-		//view.dom still exist, memory leaks?
+		assert.notEqual(view.bindings.plugins['class'],undefined);
+		assert.notEqual(view.bindings.plugins['other'],undefined);		
 
 	});
+});
+
+describe('Destroy', function() {
+
+	it('should remove from parent element if exists', function() {
+		var parent = document.createElement('div');
+
+		var view = lego('<button>maple</button>');
+		view.build(parent);
+		view.destroy();
+		assert.equal(parent.innerHTML, '');
+	});
+
+  //use spy
+	it('should destroy bindings');
+
+	//view.dom still exist, memory leaks?
+
+});
+
+
+describe("Lifecycle hooks", function() {
 	
+	it("emits 'inserted' on build", function(done) {
+		var view = lego();
+
+		view.on('inserted', function() {
+			done();
+		});
+
+		view.build(document.createElement('div'));
+	});
+
+	it("emits 'compiled' on build only once", function(done) {
+		var view = lego(),
+				idx = 0;
+
+		view.on('compiled', function() {
+			idx++;
+		});
+
+		view.build(document.createElement('div'));
+		view.build(document.createElement('div'));
+		assert.equal(idx, 1);
+	});
+
+	// it("@destroyed", function() {
+		
+	// });
+	
+	// 	it("should emit a removed event", function() {
+	// 	var view = new View(),
+	// 	    removed = false;
+
+	// 	view.html('<button>maple</button>');
+	// 	view.el();
+	// 	view.on('removed', function() {
+	// 		removed = true;
+	// 	});
+	// 	view.remove();
+	// 	assert.equal(removed, true);
+	// });
+});
+
 // function olivier(tmpl, data) {
 
 // 	var test = function(){
@@ -272,10 +300,12 @@ describe("Render", function() {
 
 // 	test.add = function() {
 // 		console.log('add', this);
+// 		return test;
 // 	};
 
 // 	test.build = function() {
 // 		console.log('build with ', tmpl, data);
+// 		return test;
 // 	};
 
 // 	return test;
