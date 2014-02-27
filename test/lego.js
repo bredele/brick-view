@@ -224,7 +224,7 @@ describe("Insert", function() {
 			});
 });
 
-describe("Blocks (aka plugins)", function() {
+describe("Bricks (aka plugins)", function() {
 
 	it("should add plugin", function() {
 		var plugin = function() {};
@@ -349,20 +349,6 @@ describe("Lifecycle hooks", function() {
 		});
 		
 	});
-	
-	
-	// 	it("should emit a removed event", function() {
-	// 	var view = new View(),
-	// 	    removed = false;
-
-	// 	view.html('<button>maple</button>');
-	// 	view.el();
-	// 	view.on('removed', function() {
-	// 		removed = true;
-	// 	});
-	// 	view.remove();
-	// 	assert.equal(removed, true);
-	// });
 });
 
 // function olivier(tmpl, data) {
