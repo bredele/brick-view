@@ -1,4 +1,4 @@
-var lego = require('lego'),
+var lego = require('..'),
 		assert = require('assert');
 
 
@@ -350,23 +350,3 @@ describe("Lifecycle hooks", function() {
 		
 	});
 });
-
-// function olivier(tmpl, data) {
-
-// 	var test = function(){
-// 		return test.build();
-// 	}
-
-// 	test.add = function() {
-// 		console.log('add', this);
-// 		return test;
-// 	};
-
-// 	test.build = function() {
-// 		console.log('build with ', tmpl, data);
-// 		return test;
-// 	};
-
-// 	return test;
-// }
-
