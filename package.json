@@ -27,7 +27,7 @@
     "url": "https://github.com/bredele/lego/issues"
   },
   "dependencies": {
-    "data-binding": "0.0.0",
+    "data-binding": "0.0.2",
     "store-component": "~0.1.2",
     "each-bredele": "0.0.1"
   },
