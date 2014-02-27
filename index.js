@@ -38,7 +38,7 @@ for (var key in Store.prototype) {
 
 Lego.prototype.build = function() {
 	//change for mount
-	this.bindings.apply(this.dom);
+	this.bindings.scan(this.dom);
 };
 
 Lego.prototype.destroy = function() {

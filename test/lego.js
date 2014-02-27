@@ -81,16 +81,16 @@ describe("Render", function() {
 
 			it("should substitute variable with data", function() {
 				//refactor binding
-				var view = lego('<button>{ label }</button>');
+				var view = lego('<button>{{ label }}</button>');
 				view.set('label', 'lego');
 
-				assert.equal(view.dom.innerHTML, '{ label }');
+				assert.equal(view.dom.innerHTML, '{{ label }}');
 				view.build();
 				assert.equal(view.dom.innerHTML, 'lego');
 			});
 
 			it('should initialize dom with data', function() {
-				var view = lego('<button>{ label }</button>', {
+				var view = lego('<button>{{ label }}</button>', {
 					label: 'lego'
 				});
 				view.build();
@@ -98,7 +98,7 @@ describe("Render", function() {
 			});
 
 			it("should update dom when data changes", function() {
-				var view = lego('<button>{ label }</button>');
+				var view = lego('<button>{{ label }}</button>');
 				view.set('label', 'lego');
 				view.build();
 
@@ -110,7 +110,7 @@ describe("Render", function() {
 		describe("computed", function() {
 			it("should substitute variable with computed property", function() {
 				//refactor binding
-				var view = lego('<button>{ name }</button>', {
+				var view = lego('<button>{{ name }}</button>', {
 					firstName: 'Olivier',
 					lastName : 'Wietrich'
 				});
@@ -125,7 +125,7 @@ describe("Render", function() {
 			});
 
 			it("should update dom when data changes", function() {	
-				var view = lego('<button>{ name }</button>', {
+				var view = lego('<button>{{ name }}</button>', {
 					firstName: 'Olivier',
 					lastName : 'Wietrich'
 				});
@@ -145,7 +145,7 @@ describe("Render", function() {
 
 			it("should update dom when view is reseted", function() {
 				//refactor binding
-				var view = lego('<a class="{className}" href="{link}">{ github }</a>', {
+				var view = lego('<a class="{{className}}" href="{{link}}">{{ github }}</a>', {
 					github: 'bredele',
 					className: 'github'
 				});
@@ -168,7 +168,7 @@ describe("Render", function() {
 
 			it("should update dom when view is reseted", function() {
 				//refactor binding
-				var view = lego('<a class="{className}" href="{link}">{ github }</a>', {
+				var view = lego('<a class="{{className}}" href="{{link}}">{{ github }}</a>', {
 					github: 'bredele',
 					className: 'github'
 				});

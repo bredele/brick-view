@@ -27,5 +27,13 @@
   "readmeFilename": "Readme.md",
   "bugs": {
     "url": "https://github.com/bredele/lego/issues"
-  }
+  },
+  "dependencies": {
+    "data-binding": "0.0.0",
+    "store-component": "~0.1.2"
+  },
+  "browser": {
+    "store": "store-component",
+    "binding" : "data-binding"
+  },
 }
