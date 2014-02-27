@@ -20,7 +20,9 @@ module.exports = Lego;
  *   lego('<span>{{ label }}</span>', {
  *     label: 'lego'
  *   });
- *   
+ *
+ * @event 'before ready'
+ * @event 'ready' 
  * @api public
  */
 
@@ -36,9 +38,9 @@ function Lego(tmpl, data) {
  this.el = null;
  this.dom(tmpl);
  this.once('before inserted', function(bool) {
- 	this.emit('before compiled');
+ 	this.emit('before ready');
  	this.bindings.scan(this.el, bool);
- 	this.emit('compiled');
+ 	this.emit('ready');
  }, this);
 }
 
@@ -85,6 +87,7 @@ Lego.prototype.add = function(name, plug) {
  *   
  * @param  {String|Element} tmpl
  * @return {Lego}
+ * @event 'rendered' 
  * @api public
  */
 
@@ -115,6 +118,8 @@ Lego.prototype.dom = function(tmpl) {
  * @param  {Element} parent
  * @param {Boolean} query
  * @return {Lego}
+ * @event 'before inserted'
+ * @event 'inserted' 
  * @api public
  */
 
@@ -131,10 +136,12 @@ Lego.prototype.build = function(parent, query) {
 
 
 /**
- * Remove attribute bindings. store
+ * Remove attribute bindings, store
  * listeners and remove dom.
  * 
  * @return {Lego}
+ * @event 'before removed'
+ * @event 'removed' 
  * @api public
  */
 

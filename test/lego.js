@@ -307,21 +307,21 @@ describe("Lifecycle hooks", function() {
 		});
 	});
 
-	describe("@compiled", function() {
+	describe("@ready", function() {
 
-		it("emits 'before compiled' just before compilation", function(done) {
+		it("emits 'before ready' just before compilation", function(done) {
 			var view = lego('<span>{{lego}}</span>');
-			view.on('before compiled', function() {
+			view.on('before ready', function() {
 				if(view.el.innerHTML === '{{lego}}') done();
 			});
 			view.build();
 		});
 
-		it("emits 'compiled' on build only once", function() {
+		it("emits 'ready' on build only once", function() {
 			var view = lego('<span>lego</span>'),
 					idx = 0;
 
-			view.on('compiled', function() {
+			view.on('ready', function() {
 				idx++;
 			});
 
