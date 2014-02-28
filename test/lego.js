@@ -59,7 +59,7 @@ describe("Render", function() {
 
 		it("should render regular html", function() {
 			//NOTE: may be we should do lego() and lego.extend 
-			var view =  lego('<button>lego</lego>');
+			var view =  lego('<button>lego</button>');
 			assert.equal(view.el instanceof Element, true);
 			assert.equal(view.el.innerHTML, 'lego');
 			assert.equal(view.el.nodeName, 'BUTTON');
