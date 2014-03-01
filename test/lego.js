@@ -232,6 +232,16 @@ describe("Bricks (aka plugins)", function() {
 		assert.equal(view.bindings.plugins['class'], plugin);
 	});
 
+	it("should execute plugin.init if exists and pass its context", function(done) {
+		var view = lego();
+		var plugin = function() {};
+		plugin.init = function(ctx) {
+			if(ctx === view) done();
+		};
+
+		view.add('something', plugin);
+	});
+
 	it("should add multiple binding's plugins", function() {
 		var view = lego().add({
 			"class" : function(){},

@@ -73,6 +73,7 @@ Lego.prototype.add = function(name, plug) {
 		each(name, this.add, this);
 	} else {
 		this.bindings.add(name, plug);
+		if(plug.init) plug.init(this);
 	}
 	return this;
 };
