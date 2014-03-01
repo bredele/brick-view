@@ -1,4 +1,4 @@
-# Lego
+# Brick
 
 [![Build Status](https://travis-ci.org/bredele/lego.png?branch=master)](https://travis-ci.org/bredele/lego)  [![Selenium Test Status](https://saucelabs.com/buildstatus/bredele)](https://saucelabs.com/u/bredele)
 <!-- Remember where you were young, how simple it was to stack few blocks of Lego to create your dream house? -->
@@ -8,16 +8,16 @@
 
   with [component](http://github.com/component/component):
 
-    $ component install bredele/lego
+    $ component install bredele/brick
 
   with [nodejs](http://nodejs.org):
 
-    $ npm install lego
+    $ npm install brick-component
 
 ## 10 seconds example
 
 ```js
-var view = lego('<span>{{name}}</span>', {
+var view = brick('<span>{{name}}</span>', {
 	name: 'bredele'
 });
 
@@ -26,7 +26,7 @@ view.build(document.body);
 
 ## Browser support
 
-Lego is fully tested and supports all mainstream browsers from IE8+.
+brick is fully tested and supports all mainstream browsers from IE8+.
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/bredele.svg)](https://saucelabs.com/u/bredele)
 

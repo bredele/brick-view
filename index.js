@@ -7,11 +7,11 @@ var Store = require('store'),
  * Expose 'Lego'
  */
 
-module.exports = Lego;
+module.exports = Brick;
 
 
 /**
- * Lego constructor.
+ * Brick constructor.
  * example:
  * 
  *   var lego = require('lego');
@@ -26,8 +26,8 @@ module.exports = Lego;
  * @api public
  */
 
-function Lego(tmpl, data) {
- if(!(this instanceof Lego)) return new Lego(tmpl, data);
+function Brick(tmpl, data) {
+ if(!(this instanceof Brick)) return new Brick(tmpl, data);
  this.data = data || {};
 
  //refactor binding
@@ -48,7 +48,7 @@ function Lego(tmpl, data) {
 //mixin
 
 for (var key in Store.prototype) {
-  Lego.prototype[key] = Store.prototype[key];
+  Brick.prototype[key] = Store.prototype[key];
 }
 
 
@@ -64,11 +64,11 @@ for (var key in Store.prototype) {
  *   
  * @param {String|Object} name
  * @param {Function} plug 
- * @return {Lego}
+ * @return {Brick}
  * @api public
  */
 
-Lego.prototype.add = function(name, plug) {
+Brick.prototype.add = function(name, plug) {
 	if(typeof name !== 'string') {
 		each(name, this.add, this);
 	} else {
@@ -87,12 +87,12 @@ Lego.prototype.add = function(name, plug) {
  *   view.dom(dom);
  *   
  * @param  {String|Element} tmpl
- * @return {Lego}
+ * @return {Brick}
  * @event 'rendered' 
  * @api public
  */
 
-Lego.prototype.dom = function(tmpl) {
+Brick.prototype.dom = function(tmpl) {
 	if(typeof tmpl === 'string') {
 		var div = document.createElement('div');
 		div.insertAdjacentHTML('beforeend', tmpl);
@@ -118,13 +118,13 @@ Lego.prototype.dom = function(tmpl) {
  *    
  * @param  {Element} parent
  * @param {Boolean} query
- * @return {Lego}
+ * @return {Brick}
  * @event 'before inserted'
  * @event 'inserted' 
  * @api public
  */
 
-Lego.prototype.build = function(parent, query) {
+Brick.prototype.build = function(parent, query) {
 	if(this.el) {
 		this.emit('before inserted', query); //should we pass parent?
 		if(parent) {
@@ -140,13 +140,13 @@ Lego.prototype.build = function(parent, query) {
  * Remove attribute bindings, store
  * listeners and remove dom.
  * 
- * @return {Lego}
+ * @return {Brick}
  * @event 'before removed'
  * @event 'removed' 
  * @api public
  */
 
-Lego.prototype.remove = function() {
+Brick.prototype.remove = function() {
 	var parent = this.el.parentElement;
 	this.emit('before removed');
 	this.bindings.remove();

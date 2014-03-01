@@ -1,7 +1,7 @@
 {
-  "name": "lego",
-  "repo": "bredele/lego",
-  "description": "Data binding wrapper",
+  "name": "brick",
+  "repo": "bredele/brick",
+  "description": "MVVM view for lego",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {

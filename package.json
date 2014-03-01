@@ -1,7 +1,7 @@
 {
-  "name": "lego",
+  "name": "brick-component",
   "version": "0.0.3",
-  "description": "MVVM bricks to create large scale and real time web applications in a flash.",
+  "description": "MVVM brick to create large scale and real time web applications in a flash.",
   "main": "index.js",
   "scripts": {
     "test": "zuul -- test/*.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bredele/lego.git"
+    "url": "git://github.com/bredele/brick.git"
   },
   "keywords": [
     "mvc",
@@ -24,7 +24,7 @@
   "license": "BSD",
   "readmeFilename": "Readme.md",
   "bugs": {
-    "url": "https://github.com/bredele/lego/issues"
+    "url": "https://github.com/bredele/brick/issues"
   },
   "dependencies": {
     "data-binding": "0.0.4",
