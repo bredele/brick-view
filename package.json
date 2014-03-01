@@ -1,6 +1,6 @@
 {
   "name": "lego",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "MVVM bricks to create large scale and real time web applications in a flash.",
   "main": "index.js",
   "scripts": {
