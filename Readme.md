@@ -6,8 +6,13 @@
 
 ## Installation
 
+with [component](http://github.com/component/component):
+
     $ component install bredele/lego
 
+with [nodejs](http://nodejs.org):
+
+    $ npm install lego
 
 ## 10 seconds example
 
