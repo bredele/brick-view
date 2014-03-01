@@ -3,6 +3,10 @@
   "version": "0.0.3",
   "description": "MVVM brick to create large scale and real time web applications in a flash.",
   "main": "index.js",
+  "directories": {
+    "examples": "examples",
+    "test": "test"
+  },
   "scripts": {
     "test": "zuul -- test/*.js",
     "test-local": "zuul --local -- test/*.js"
