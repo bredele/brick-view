@@ -1,6 +1,6 @@
 {
   "name": "brick-component",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "MVVM brick to create large scale and real time web applications in a flash.",
   "main": "index.js",
   "directories": {
@@ -31,9 +31,9 @@
     "url": "https://github.com/bredele/brick/issues"
   },
   "dependencies": {
-    "data-binding": "0.0.4",
     "store-component": "~0.1.2",
-    "each-bredele": "0.0.1"
+    "each-bredele": "0.0.1",
+    "data-binding": "0.0.5"
   },
   "browser": {
     "store": "store-component",
