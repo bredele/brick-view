@@ -1,5 +1,5 @@
 {
-  "name": "brick-component",
+  "name": "brick-view",
   "version": "0.0.4",
   "description": "MVVM brick to create large scale and real time web applications in a flash.",
   "main": "index.js",

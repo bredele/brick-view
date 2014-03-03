@@ -1,6 +1,6 @@
 {
-  "name": "brick",
-  "repo": "bredele/brick",
+  "name": "brick-view",
+  "repo": "bredele/brick-view",
   "description": "MVVM view for lego",
   "version": "0.0.1",
   "keywords": [],
