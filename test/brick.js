@@ -165,6 +165,20 @@ describe("Render", function() {
 			});
 		});
 		
+		describe("Filters", function() {
+			it("should filter variables", function() {
+				//refactor binding
+				var view = lego('<button>{{ label } | hello}</button>');
+				view.filter('hello', function(str) {
+					return 'hello ' + str + '!';
+				});
+				view.set('label', 'lego');
+				view.build();
+				assert.equal(view.el.innerHTML, 'hello lego!');
+			});
+
+		});
+		
 		
 		// describe("reset", function() {
 

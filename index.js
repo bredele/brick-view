@@ -33,8 +33,8 @@ function Brick(tmpl, data) {
  //refactor binding
  this.bindings = binding();
  this.bindings.model = this;
-
- this.formatters = {}; //do we need formatters?
+ 
+ this.formatters = {};
  this.el = null;
  this.dom(tmpl);
  this.once('before inserted', function(bool) {
@@ -75,6 +75,19 @@ Brick.prototype.add = function(name, plug) {
 		this.bindings.add(name, plug);
 		if(plug.init) plug.init(this);
 	}
+	return this;
+};
+
+
+/**
+ * Filter brick.
+ * 
+ * @param  {String}   name
+ * @param  {Function} fn
+ * @return {Brick}   
+ */
+Brick.prototype.filter = function(name, fn) {
+	this.bindings.subs.filter(name, fn);
 	return this;
 };
 
