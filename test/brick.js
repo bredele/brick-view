@@ -166,15 +166,32 @@ describe("Render", function() {
 		});
 		
 		describe("Filters", function() {
+			var view;
+			beforeEach(function() {
+				view = lego('<button>{{ label } | uppercase | hello}</button>', {
+					label: 'lego'
+				});
+			});
+
 			it("should filter variables", function() {
-				//refactor binding
-				var view = lego('<button>{{ label } | hello}</button>');
 				view.filter('hello', function(str) {
 					return 'hello ' + str + '!';
 				});
-				view.set('label', 'lego');
 				view.build();
 				assert.equal(view.el.innerHTML, 'hello lego!');
+			});
+
+			it('should add multiple filters', function() {
+				view.filter({
+					hello: function(str) {
+						return 'hello ' + str + '!';
+					},
+					uppercase : function(str) {
+						return str.toUpperCase();
+					}
+				});
+				view.build();
+				assert.equal(view.el.innerHTML, 'hello LEGO!');
 			});
 
 		});

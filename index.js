@@ -84,10 +84,16 @@ Brick.prototype.add = function(name, plug) {
  * 
  * @param  {String}   name
  * @param  {Function} fn
- * @return {Brick}   
+ * @return {Brick}
+ * @api public 
  */
+
 Brick.prototype.filter = function(name, fn) {
-	this.bindings.subs.filter(name, fn);
+	if(typeof name!== 'string') {
+		each(name, this.filter, this);
+	} else {
+		this.bindings.subs.filter(name, fn);
+	}
 	return this;
 };
 
