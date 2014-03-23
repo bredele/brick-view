@@ -19,7 +19,7 @@
 
 ```js
 var view = brick('<span>{{name}}</span>', {
-	name: 'bredele'
+  name: 'bredele'
 });
 
 view.build(document.body);
