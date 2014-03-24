@@ -33,7 +33,6 @@ brick is fully tested and supports all mainstream browsers from IE8+.
 
 IE7 requires the use of JSON and querySelector polyfill.
 
-## Concept
 
 ## License
 
