@@ -1,5 +1,5 @@
-var lego = require('brick'),
-		assert = require('assert');
+var lego = require('brick-view');
+var assert = require('assert');
 
 
 describe("Constructor", function() {

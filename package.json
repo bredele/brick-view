@@ -31,14 +31,14 @@
     "url": "https://github.com/bredele/brick/issues"
   },
   "dependencies": {
-    "store-component": "~0.1.2",
-    "each-bredele": "0.0.1",
-    "data-binding": "0.0.7"
+    "bredele-each": "^0.1.2",
+    "bredele-store": "^0.2.0",
+    "data-binding": "^0.1.0"
   },
   "browser": {
-    "store": "store-component",
+    "store": "bredele-store",
     "binding": "data-binding",
-    "each": "each-bredele"
+    "each": "bredele-each"
   },
   "devDependencies": {
     "mocha": "~1.17.1",

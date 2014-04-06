@@ -1,6 +1,12 @@
-var Store = require('store'),
-		binding = require('binding'),
-		each = require('each');
+
+/**
+ * Module dependencies.
+ * @api private
+ */
+
+var Store = require('bredele-store');
+var binding = require('binding');
+var each = require('bredele-each');
 
 
 /**
