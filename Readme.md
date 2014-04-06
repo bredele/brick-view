@@ -1,4 +1,5 @@
-# Brick
+# View
+
 
 [![Build Status](https://travis-ci.org/bredele/brick-view.png?branch=master)](https://travis-ci.org/bredele/brick-view) [![Selenium Test Status](https://saucelabs.com/buildstatus/bredele)](https://saucelabs.com/u/bredele)
 <!-- Remember where you were young, how simple it was to stack few blocks of Lego to create your dream house? -->
@@ -8,17 +9,17 @@
 
   with [component](http://github.com/component/component):
 
-    $ component install bredele/brick
+    $ component install bredele/brick-view
 
   with [nodejs](http://nodejs.org):
 
-    $ npm install brick-component
+    $ npm install brick-view
 
 ## 10 seconds example
 
 ```js
 var view = brick('<span>{{name}}</span>', {
-	name: 'bredele'
+  name: 'bredele'
 });
 
 view.build(document.body);
@@ -32,7 +33,6 @@ brick is fully tested and supports all mainstream browsers from IE8+.
 
 IE7 requires the use of JSON and querySelector polyfill.
 
-## Concept
 
 ## License
 
