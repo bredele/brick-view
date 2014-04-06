@@ -1,6 +1,6 @@
 {
   "name": "brick-view",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "MVVM brick to create large scale and real time web applications in a flash.",
   "main": "index.js",
   "directories": {

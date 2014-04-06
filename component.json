@@ -2,7 +2,7 @@
   "name": "brick-view",
   "repo": "bredele/brick-view",
   "description": "MVVM view for lego",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "keywords": [],
   "dependencies": {
     "bredele/binding": "*",
