@@ -4,7 +4,7 @@
  * @api private
  */
 
-var Store = require('bredele-store');
+var Store = require('datastore');
 var binding = require('binding');
 var each = require('bredele-each');
 
