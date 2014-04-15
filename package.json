@@ -1,6 +1,6 @@
 {
   "name": "brick-view",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "MVVM brick to create large scale and real time web applications in a flash.",
   "main": "index.js",
   "directories": {
@@ -32,11 +32,10 @@
   },
   "dependencies": {
     "bredele-each": "^0.1.2",
-    "data-binding": "^0.1.0",
-    "datastore": "^1.0.0"
+    "datastore": "^1.0.0",
+    "cement": "^0.3.0"
   },
   "browser": {
-    "binding": "data-binding",
     "each": "bredele-each"
   },
   "devDependencies": {
