@@ -5,10 +5,10 @@
   <title>View</title>
 </head>
 <body>
-  <h1 class="me">My name is {firstname} {lastname}</h1>
+  <h1 class="me">My name is {{ firstname }} {{ lastname }}</h1>
   <script src="../build/build.js"></script>
   <script>
-    var lego = require('brick');
+    var lego = require('brick-view');
     var tmpl = document.querySelector('.me');
 
     //example 2
@@ -25,7 +25,7 @@
 
 
     //example 3
-    var github = lego('<h2>and my github is <a href="{link}">{github}</a></h2>', {
+    var github = lego('<h2>and my github is <a href="{{ link }}">{{github }}</a></h2>', {
       github : 'bredele',
       link: 'http://github.com/bredele'
     });
